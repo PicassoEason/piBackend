@@ -7,15 +7,15 @@ app.use(express.json());
 app.use(cors());
 //照時間排序
 app.get("/orderdata", async (req, res) => {
-  const orderdate= await User.orderBy('date','asc').limit(5).get();
+  const orderdate= await User.orderBy('date','desc').limit(5).get();
   const list2 = orderdate.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   res.send(list2);
-
 });
-
-
-
-
+app.get("/TUM", async (req, res) => {
+  const orderdate= await User.orderBy('date','desc').limit(1).get();
+  const list2 = orderdate.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  res.send(list2);
+});
 
 //  app.post("/create", async (req, res) => {
 //    const data = req.body;
